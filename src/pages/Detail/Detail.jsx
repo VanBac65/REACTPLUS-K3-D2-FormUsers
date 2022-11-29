@@ -11,8 +11,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clear_user, getUser } from '../../app/UsersSlice';
 import { deleteUser } from '../../Services/DeleteUser';
 import { patchUser } from '../../Services/PatchUser';
+import { isObjectEqual } from '../../Services/IsObjectEqual';
 import moment from 'moment';
 import './Detail.css'
+import { timeOut } from '../../Services/timeOutBackHome';
 
 export default function Detail() {
   const dateFormat = 'DD/MM/YYYY';
@@ -24,12 +26,13 @@ export default function Detail() {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [openModalDel, setOpenModalDel] = useState(false);
   const [openModalUpdate, setOpenModalUpdate] = useState(false);
+  const [api, contextHolder] = notification.useNotification();
+  const [openDisabled, setOpenDisabled] = useState(false)
   const { control, handleSubmit, setValue, reset, watch, formState: { errors, isValid } } = useForm({
     resolver: yupResolver(schema),
     mode: "onBlur",
     reValidateMode: "onBlur",
   })
-  const [api, contextHolder] = notification.useNotification();
   const openNotification = (placement, des) => {
     api.info({
       message: `Notification`,
@@ -38,7 +41,7 @@ export default function Detail() {
     });
   };
   const dataUser = useSelector(store => store.users).user
-  const dataUpdate = useRef({})
+  const dataUpdate = useRef(watch())
   if (isLoading) {
     setTimeout(() => {
       setStopLoading(true)
@@ -46,6 +49,7 @@ export default function Detail() {
   }
   useEffect(() => {
     setIsLoading(true)
+
     const getDataUser = async () => {
       try {
         await dispatch(getUser(`/users/${userId}`))
@@ -81,6 +85,17 @@ export default function Detail() {
       setIsLoading(true)
     }
   }, [dataUser])
+  useEffect(() => {
+    if (isObjectEqual(watch(), dataUser)) {
+      setOpenDisabled(false)
+    }
+    else if (isValid === false) {
+      setOpenDisabled(false)
+    }
+    else if (!isObjectEqual(watch(), dataUser)) {
+      setOpenDisabled(true)
+    }
+  }, [watch()])
   const showModalDel = () => {
     setOpenModalDel(true);
   };
@@ -90,13 +105,7 @@ export default function Detail() {
   const handleOkDel = async () => {
     setConfirmLoading(true);
     await deleteUser(`/users/${userId}`)
-    setTimeout(() => {
-      setOpenModalDel(false);
-      openNotification('topRight', 'Xóa User thành công!!!')
-      setTimeout(() => {
-        navigate('/home')
-      }, 3000)
-    }, 1000);
+    timeOut(setOpenModalUpdate,openNotification ,'Xóa User thành công!!!',navigate)
   };
   const handleCancelDel = () => {
     setOpenModalDel(false);
@@ -107,18 +116,13 @@ export default function Detail() {
   const handleOkUpdate = async () => {
     setConfirmLoading(true);
     await patchUser(`/users/${userId}`, dataUpdate.current)
-    setTimeout(async () => {
-      setOpenModalUpdate(false);
-      openNotification('topRight', 'Update User thành công!!!')
-      setTimeout(() => {
-        navigate('/home')
-      }, 3000)
-    }, 1000);
+    timeOut(setOpenModalUpdate,openNotification ,'Update User thành công!!!',navigate)
   };
   const handleCancelUpdate = () => {
     setOpenModalUpdate(false);
   };
   const onSubmit = (data) => {
+    
     data.dateOfBirth = Date.parse(data.dateOfBirth)
     dataUpdate.current = data
   }
@@ -271,8 +275,9 @@ export default function Detail() {
           </Row>
           <Row className='button-actions'>
             <Col span={2} />
-            <Col span={8}>
-              <Button type='primary' htmlType='submit' onClick={showModalUpdate} disabled={!isValid}>Update</Button>
+            <Col span={8}>{
+            }
+              <Button type='primary' htmlType='submit' onClick={showModalUpdate} disabled={!openDisabled}>Update</Button>
               <Button type='primary' htmlType='button' onClick={showModalDel}>Delete</Button>
               <Modal title="Confirm" open={openModalDel} onOk={handleOkDel} onCancel={handleCancelDel} confirmLoading={confirmLoading}>
                 <p>Bạn có chắc chắn muốn xóa?</p>

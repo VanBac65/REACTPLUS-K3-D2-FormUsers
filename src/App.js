@@ -14,7 +14,7 @@ function App() {
   ];
   return (
     <div className="App">
-      <Menu items={items} mode={'horizontal'} />;
+      <Menu items={items} mode={'horizontal'} />
       <div className='routes'>
         <Routes>
           <Route path='*' element={<NotFound />} />

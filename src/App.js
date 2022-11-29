@@ -1,56 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import { Link, Route, Routes } from 'react-router-dom';
+import CreateUser from './pages/CreateUser/CreateUser';
+import Detail from './pages/Detail/Detail';
+import Home from './pages/Home/Home';
+import NotFound from './pages/NotFound/NotFound';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <div className='nav'>
+        <Link className={`btn-list`} to="/home">List</Link>
+        <Link className={`btn-create`} to="/create">Create</Link>
+      </div>
+      <div className='routes'>
+        <Routes>
+          <Route path='*' element={<NotFound />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/create' element={<CreateUser />} />
+          <Route path='/users/:userId' element={<Detail />} />
+        </Routes>
+      </div>
     </div>
   );
 }

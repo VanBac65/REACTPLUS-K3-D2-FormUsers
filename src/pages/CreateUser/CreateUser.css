@@ -1,0 +1,28 @@
+.form-create .input-label{
+    margin: auto 0px;
+}
+
+.row {
+    margin: 10px 0px;
+}
+
+.input-value {
+    text-align: start;
+}
+
+.ant-select {
+    width: 50%;
+}
+
+.errors-validate {
+    margin: auto 20px;
+}
+
+.errors-validate p{
+    margin: auto 0px;
+    color: red;
+}
+
+.form-create .button-actions {
+    text-align: end;
+}

@@ -1,5 +1,22 @@
 .App {
   text-align: center;
+  margin: 0% 5%;
+}
+
+.App .nav {
+  display: flex;
+  background-color: #ABB6C8; 
+}
+
+.App .nav a {
+  font-size: 20px;
+  color: azure;
+  padding: 5px 20px;
+  text-decoration: none;
+}
+
+.action {
+  color: red !important;
 }
 
 .App-logo {

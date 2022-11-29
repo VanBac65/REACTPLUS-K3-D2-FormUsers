@@ -1,0 +1,33 @@
+.form-detail .input-label {
+    margin: auto 0px;
+    text-align: start;
+}
+
+.row {
+    margin: 10px 0px;
+}
+
+.input-value {
+    text-align: start;
+}
+
+.ant-select {
+    width: 50%;
+}
+
+.errors-validate {
+    margin: auto 20px;
+}
+
+.errors-validate p {
+    margin: auto 0px;
+    color: red;
+}
+
+.button-actions {
+    text-align: end;
+}
+
+.form-detail button[type='submit']:first-child {
+    margin-right: 20px;
+}

@@ -5,14 +5,16 @@ import Detail from './pages/Detail/Detail';
 import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound/NotFound';
 import './App.css';
+import { Menu } from 'antd';
 
 function App() {
+  const items = [
+    { label: <Link to='/home'>List</Link>, key: 'item-1' },
+    { label: <Link to='/create'>Create</Link>, key: 'item-2' },
+  ];
   return (
     <div className="App">
-      <div className='nav'>
-        <Link className={`btn-list`} to="/home">List</Link>
-        <Link className={`btn-create`} to="/create">Create</Link>
-      </div>
+      <Menu items={items} mode={'horizontal'} />;
       <div className='routes'>
         <Routes>
           <Route path='*' element={<NotFound />} />

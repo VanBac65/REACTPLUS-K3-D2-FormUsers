@@ -39,43 +39,6 @@ export default function Detail() {
   };
   const dataUser = useSelector(store => store.users).user
   const dataUpdate = useRef({})
-  const showModalDel = () => {
-    setOpenModalDel(true);
-  };
-  const showModalUpdate = () => {
-    setOpenModalUpdate(true);
-  };
-  const handleOkDel = async () => {
-    setConfirmLoading(true);
-    await deleteUser(`/users/${userId}`)
-    setTimeout(() => {
-      setOpenModalDel(false);
-      openNotification('topRight', 'Xóa User thành công!!!')
-      setTimeout(() => {
-        navigate('/home')
-      }, 3000)
-    }, 1000);
-  };
-  const handleCancelDel = () => {
-    setOpenModalDel(false);
-  };
-  const handleOkError = () => {
-    navigate('/home')
-  }
-  const handleOkUpdate = async () => {
-    setConfirmLoading(true);
-    await patchUser(`/users/${userId}`, dataUpdate.current)
-    setTimeout(async () => {
-      setOpenModalUpdate(false);
-      openNotification('topRight', 'Update User thành công!!!')
-      setTimeout(() => {
-        navigate('/home')
-      }, 3000)
-    }, 1000);
-  };
-  const handleCancelUpdate = () => {
-    setOpenModalUpdate(false);
-  };
   if (isLoading) {
     setTimeout(() => {
       setStopLoading(true)
@@ -118,6 +81,43 @@ export default function Detail() {
       setIsLoading(true)
     }
   }, [dataUser])
+  const showModalDel = () => {
+    setOpenModalDel(true);
+  };
+  const showModalUpdate = () => {
+    setOpenModalUpdate(true);
+  };
+  const handleOkDel = async () => {
+    setConfirmLoading(true);
+    await deleteUser(`/users/${userId}`)
+    setTimeout(() => {
+      setOpenModalDel(false);
+      openNotification('topRight', 'Xóa User thành công!!!')
+      setTimeout(() => {
+        navigate('/home')
+      }, 3000)
+    }, 1000);
+  };
+  const handleCancelDel = () => {
+    setOpenModalDel(false);
+  };
+  const handleOkError = () => {
+    navigate('/home')
+  }
+  const handleOkUpdate = async () => {
+    setConfirmLoading(true);
+    await patchUser(`/users/${userId}`, dataUpdate.current)
+    setTimeout(async () => {
+      setOpenModalUpdate(false);
+      openNotification('topRight', 'Update User thành công!!!')
+      setTimeout(() => {
+        navigate('/home')
+      }, 3000)
+    }, 1000);
+  };
+  const handleCancelUpdate = () => {
+    setOpenModalUpdate(false);
+  };
   const onSubmit = (data) => {
     data.dateOfBirth = Date.parse(data.dateOfBirth)
     dataUpdate.current = data
@@ -284,6 +284,6 @@ export default function Detail() {
           </Row>
         </>
       }
-    </form> 
+    </form>
   )
 }

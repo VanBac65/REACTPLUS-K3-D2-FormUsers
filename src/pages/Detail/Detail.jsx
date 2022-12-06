@@ -12,9 +12,9 @@ import { clear_user, getUser } from '../../app/UsersSlice';
 import { deleteUser } from '../../Services/DeleteUser';
 import { patchUser } from '../../Services/PatchUser';
 import { isObjectEqual } from '../../Services/IsObjectEqual';
+import { timeOut } from '../../Services/TimeOutBackHome';
 import moment from 'moment';
 import './Detail.css'
-import { timeOut } from '../../Services/timeOutBackHome';
 
 export default function Detail() {
   const dateFormat = 'DD/MM/YYYY';
@@ -49,7 +49,6 @@ export default function Detail() {
   }
   useEffect(() => {
     setIsLoading(true)
-
     const getDataUser = async () => {
       try {
         await dispatch(getUser(`/users/${userId}`))
@@ -122,7 +121,6 @@ export default function Detail() {
     setOpenModalUpdate(false);
   };
   const onSubmit = (data) => {
-    
     data.dateOfBirth = Date.parse(data.dateOfBirth)
     dataUpdate.current = data
   }

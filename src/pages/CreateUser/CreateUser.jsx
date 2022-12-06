@@ -42,15 +42,12 @@ export default function CreateUser() {
   const handleCancelCreate = () => {
     setOpenModalCreate(false);
   };
-
   const onSubmitData = async (data) => {
     data.dateOfBirth = Date.parse(data.dateOfBirth)
     dataCreate.current = data
     reset({})
   }
-
   return (
-
     < form className='form-create' onSubmit={handleSubmit(onSubmitData)} >
       <Row className='row'>
         {contextHolder}
@@ -154,7 +151,7 @@ export default function CreateUser() {
           <Controller
             name="isGraduate"
             control={control}
-            render={({ field }) => <Checkbox checked={watch('isGraduate')} onChange={() => setValue("isGraduate")} {...field} />}
+            render={({ field }) => <Checkbox checked={watch('isGraduate')} onChange={() => setValue("isGraduate",!watch('isGraduate'))} {...field} />}
           />
         </Col>
         <Col className='errors-validate'>{errors.isGraduate && <p>{errors.isGraduate.message}</p>}</Col>

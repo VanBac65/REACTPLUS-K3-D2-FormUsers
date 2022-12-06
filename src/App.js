@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useHref } from 'react-router-dom';
 import CreateUser from './pages/CreateUser/CreateUser';
 import Detail from './pages/Detail/Detail';
 import Home from './pages/Home/Home';
@@ -9,12 +9,13 @@ import { Menu } from 'antd';
 
 function App() {
   const items = [
-    { label: <Link to='/home'>List</Link>, key: 'item-1' },
-    { label: <Link to='/create'>Create</Link>, key: 'item-2' },
+    { label: <Link to='/home'>List</Link>, key: '/home' },
+    { label: <Link to='/create'>Create</Link>, key: '/create' },
   ];
+  const href = useHref()
   return (
     <div className="App">
-      <Menu items={items} mode={'horizontal'} />
+      <Menu items={items} selectedKeys={href} mode={'horizontal'} />
       <div className='routes'>
         <Routes>
           <Route path='*' element={<NotFound />} />

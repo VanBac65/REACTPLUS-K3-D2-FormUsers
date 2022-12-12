@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link, Route, Routes, useHref } from 'react-router-dom';
-import CreateUser from './Pages/CreateUser/CreateUser';
-import Detail from './Pages/Detail/Detail';
-import Home from './Pages/Home/Home';
-import NotFound from './Pages/NotFound/NotFound';
-import './App.css';
+import { Link, Navigate, Route, Routes, useHref } from 'react-router-dom';
 import { Menu } from 'antd';
+import NotFoundPage from './Pages/NotFoundPage';
+import HomePage from './Pages/HomePage';
+import CreateUserPage from './Pages/CreateUserPage';
+import DetailUserPage from './Pages/DetailUserPage';
+import './App.css';
 
 function App() {
   const items = [
@@ -18,11 +18,11 @@ function App() {
       <Menu items={items} selectedKeys={href} mode={'horizontal'} />
       <div className='routes'>
         <Routes>
-          <Route path='*' element={<NotFound />} />
-          <Route path='/' element={<Home />} />
-          <Route path='/home' element={<Home />} />
-          <Route path='/create' element={<CreateUser />} />
-          <Route path='/users/:userId' element={<Detail />} />
+          <Route path='*' element={<NotFoundPage />} />
+          <Route path='/' element={<Navigate to='/home' />} />
+          <Route path='/home' element={<HomePage />} />
+          <Route path='/create' element={<CreateUserPage />} />
+          <Route path='/users/:userId' element={<DetailUserPage />} />
         </Routes>
       </div>
     </div>

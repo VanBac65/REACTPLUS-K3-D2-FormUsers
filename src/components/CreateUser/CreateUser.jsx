@@ -2,10 +2,10 @@ import React, { useRef, useState } from 'react'
 import { Button, Checkbox, Col, DatePicker, Input, Modal, notification, Row, Select } from 'antd'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form'
-import { schema } from '../../Common/Schema';
-import { optionsGender } from '../../Common/OptionsGender';
-import { options } from '../../Common/OptionsFavourites';
-import { optionsSchool } from '../../Common/OptionsSchool';
+import { schema } from '../../Utils/Schema';
+import { optionsGender } from '../../Utils/OptionsGender';
+import { options } from '../../Utils/OptionsFavourites';
+import { optionsSchool } from '../../Utils/OptionsSchool';
 import { postUser } from '../../Services/PostUser'
 import './CreateUser.css'
 

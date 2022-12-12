@@ -2,19 +2,19 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Button, Checkbox, Col, DatePicker, Input, Modal, notification, Row, Select, Spin } from 'antd'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form'
-import { schema } from '../../Utils/Schema';
+import { useDispatch, useSelector } from 'react-redux';
 import { optionsGender } from '../../Utils/OptionsGender';
 import { options } from '../../Utils/OptionsFavourites';
 import { optionsSchool } from '../../Utils/OptionsSchool';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { clear_user, getUser } from '../../app/UsersSlice';
 import { deleteUser } from '../../Services/DeleteUser';
 import { patchUser } from '../../Services/PatchUser';
-import moment from 'moment';
-import './Detail.css'
 import { timeOut } from '../../Utils/timeOutBackHome';
 import { isObjectEqual } from '../../Utils/IsObjectEqual';
+import moment from 'moment';
+import './Detail.css'
+import { schema } from '../../Utils/Schema';
 
 export default function Detail() {
   const dateFormat = 'DD/MM/YYYY';
@@ -104,7 +104,7 @@ export default function Detail() {
   const handleOkDel = async () => {
     setConfirmLoading(true);
     await deleteUser(`/users/${userId}`)
-    timeOut(setOpenModalUpdate,openNotification ,'Xóa User thành công!!!',navigate)
+    timeOut(setOpenModalUpdate, openNotification, 'Xóa User thành công!!!', navigate)
   };
   const handleCancelDel = () => {
     setOpenModalDel(false);
@@ -115,7 +115,7 @@ export default function Detail() {
   const handleOkUpdate = async () => {
     setConfirmLoading(true);
     await patchUser(`/users/${userId}`, dataUpdate.current)
-    timeOut(setOpenModalUpdate,openNotification ,'Update User thành công!!!',navigate)
+    timeOut(setOpenModalUpdate, openNotification, 'Update User thành công!!!', navigate)
   };
   const handleCancelUpdate = () => {
     setOpenModalUpdate(false);

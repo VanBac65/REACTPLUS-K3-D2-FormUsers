@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './NotFound.css'
 
-export default function NotFound({ setAction }) {
+export default function NotFound() {
     return (
         <>
             <section className="page_404">
@@ -18,7 +18,7 @@ export default function NotFound({ setAction }) {
                                         Look like you're lost
                                     </h3>
                                     <p>the page you are looking for not avaible!</p>
-                                    <Link onClick={() => setAction('/home')} to="/home" className="link_404">Go to Home</Link>
+                                    <Link to="/home" className="link_404">Go to Home</Link>
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Detail from '../Components/Detail/Detail'
+import Detail from '../components/Detail/Detail'
 
 export default function DetailUserPage() {
     return (

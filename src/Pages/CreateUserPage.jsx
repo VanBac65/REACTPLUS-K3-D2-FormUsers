@@ -1,5 +1,5 @@
 import React from 'react'
-import CreateUser from '../Components/CreateUser/CreateUser'
+import CreateUser from '../components/CreateUser/CreateUser'
 
 export default function CreateUserPage() {
     return (

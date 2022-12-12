@@ -151,7 +151,7 @@ export default function CreateUser() {
           <Controller
             name="isGraduate"
             control={control}
-            render={({ field }) => <Checkbox checked={watch('isGraduate')} onChange={() => setValue("isGraduate",!watch('isGraduate'))} {...field} />}
+            render={({ field }) => <Checkbox checked={watch('isGraduate')} onChange={() => setValue("isGraduate", !watch('isGraduate'))} {...field} />}
           />
         </Col>
         <Col className='errors-validate'>{errors.isGraduate && <p>{errors.isGraduate.message}</p>}</Col>

@@ -1,4 +1,4 @@
-.form-create .input-label{
+.form-create .input-label {
     margin: auto 0px;
 }
 
@@ -18,7 +18,7 @@
     margin: auto 20px;
 }
 
-.errors-validate p{
+.errors-validate p {
     margin: auto 0px;
     color: red;
 }

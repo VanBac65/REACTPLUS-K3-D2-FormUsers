@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Table } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../app/UsersSlice';
-import { columns } from '../common/Columns';
+import { columns } from '../Common/Columns';
 
 const TableList = () => {
     const dispatch = useDispatch()

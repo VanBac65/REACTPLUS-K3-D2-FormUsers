@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, Route, Routes, useHref } from 'react-router-dom';
-import CreateUser from './pages/CreateUser/CreateUser';
-import Detail from './pages/Detail/Detail';
-import Home from './pages/Home/Home';
-import NotFound from './pages/NotFound/NotFound';
+import CreateUser from './Pages/CreateUser/CreateUser';
+import Detail from './Pages/Detail/Detail';
+import Home from './Pages/Home/Home';
+import NotFound from './Pages/NotFound/NotFound';
 import './App.css';
 import { Menu } from 'antd';
 

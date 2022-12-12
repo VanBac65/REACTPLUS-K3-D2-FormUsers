@@ -2,19 +2,19 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Button, Checkbox, Col, DatePicker, Input, Modal, notification, Row, Select, Spin } from 'antd'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form'
-import { schema } from '../../common/Schema';
-import { optionsGender } from '../../common/OptionsGender';
-import { options } from '../../common/OptionsFavourites';
-import { optionsSchool } from '../../common/OptionsSchool';
+import { schema } from '../../Common/Schema';
+import { optionsGender } from '../../Common/OptionsGender';
+import { options } from '../../Common/OptionsFavourites';
+import { optionsSchool } from '../../Common/OptionsSchool';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clear_user, getUser } from '../../app/UsersSlice';
 import { deleteUser } from '../../Services/DeleteUser';
 import { patchUser } from '../../Services/PatchUser';
-import { isObjectEqual } from '../../Services/IsObjectEqual';
-import { timeOut } from '../../Services/TimeOutBackHome';
 import moment from 'moment';
 import './Detail.css'
+import { timeOut } from '../../Utils/timeOutBackHome';
+import { isObjectEqual } from '../../Utils/IsObjectEqual';
 
 export default function Detail() {
   const dateFormat = 'DD/MM/YYYY';
@@ -91,7 +91,7 @@ export default function Detail() {
     else if (isValid === false) {
       setOpenDisabled(false)
     }
-    else if (!isObjectEqual(watch(), dataUser)) {
+    else {
       setOpenDisabled(true)
     }
   }, [watch()])
